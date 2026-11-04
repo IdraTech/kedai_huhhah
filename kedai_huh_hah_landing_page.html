@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kedai Huh Hah - Pedasnya Bikin Nagih!</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#d10000',
+                            dark: '#0a0a0a',
+                            card: '#161616'
+                        }
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        cursive: ['Permanent Marker', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #f3f4f6;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .torn-border-top {
+            position: relative;
+        }
+        .torn-border-top::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 40' preserveAspectRatio='none'%3E%3Cpath d='M0,40 L0,20 Q50,40 100,20 T200,20 T300,20 T400,20 T500,20 T600,20 T700,20 T800,20 T900,20 T1000,20 L1000,40 Z' fill='%230a0a0a'/%3E%3C/svg%3E");
+            z-index: 10;
+        }
+
+        .img-hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .menu-card:hover .img-hover-scale {
+            transform: scale(1.1);
+        }
+
+        /* Diagonal background for promo */
+        .promo-bg {
+            background: linear-gradient(135deg, #d10000 0%, #a30000 100%);
+            position: relative;
+        }
+        
+        /* Sticky header background transition */
+        .header-scrolled {
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 1. Header / Navbar -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 py-4">
+        <div class="container mx-auto px-4 md:px-8 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 text-2xl font-bold">
+                <i class="fa-solid fa-pepper-hot text-brand-red text-3xl"></i>
+                <span class="font-cursive tracking-wider">Kedai Huh Hah</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex gap-6 lg:gap-8 font-medium text-sm">
+                <a href="#beranda" class="hover:text-brand-red transition-colors">Beranda</a>
+                <a href="#menu" class="hover:text-brand-red transition-colors">Menu</a>
+                <a href="#tentang" class="hover:text-brand-red transition-colors">Tentang Kami</a>
+                <a href="#promo" class="hover:text-brand-red transition-colors">Promo</a>
+                <a href="#galeri" class="hover:text-brand-red transition-colors">Galeri</a>
+                <a href="#kontak" class="hover:text-brand-red transition-colors">Kontak</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <a href="#" class="hidden md:flex items-center gap-2 bg-brand-red hover:bg-red-700 text-white px-5 py-2 rounded-full font-semibold transition-all">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                Pesan Sekarang
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden text-2xl text-white" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-brand-dark p-5 flex flex-col gap-4 shadow-xl border-t border-gray-800">
+            <a href="#beranda" class="hover:text-brand-red">Beranda</a>
+            <a href="#menu" class="hover:text-brand-red">Menu</a>
+            <a href="#tentang" class="hover:text-brand-red">Tentang Kami</a>
+            <a href="#promo" class="hover:text-brand-red">Promo</a>
+            <a href="#galeri" class="hover:text-brand-red">Galeri</a>
+            <a href="#kontak" class="hover:text-brand-red">Kontak</a>
+            <a href="#" class="bg-brand-red text-white text-center py-2 rounded-full font-semibold mt-2">
+                <i class="fa-brands fa-whatsapp"></i> Pesan Sekarang
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. Hero Section -->
+    <section id="beranda" class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden flex items-center min-h-[90vh]">
+        <!-- Background decorative elements -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-brand-red/10 blur-3xl rounded-full -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+        
+        <div class="container mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Text -->
+            <div class="space-y-6 z-10">
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight flex flex-col">
+                    <span class="text-white">Kedai</span>
+                    <span class="font-cursive text-brand-red text-6xl md:text-8xl mt-2 tracking-wide transform -rotate-2">Huh Hah</span>
+                </h1>
+                <p class="text-2xl font-semibold text-gray-200 mt-4 font-cursive tracking-wide">
+                    Sekali Coba, Bikin Huh Hah!
+                </p>
+                <p class="text-gray-400 text-lg max-w-md">
+                    Sensasi pedas yang bikin penasaran. Nikmati berbagai menu dengan cita rasa yang menggugah selera.
+                </p>
+                <div class="pt-4">
+                    <a href="#menu" class="inline-block bg-brand-red hover:bg-red-700 text-white px-8 py-3 rounded-full font-semibold text-lg transition-transform hover:-translate-y-1 shadow-lg shadow-red-900/50">
+                        Lihat Menu <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Image -->
+            <div class="relative z-10 flex justify-center lg:justify-end">
+                <div class="relative">
+                    <!-- Floating Badge -->
+                    <div class="absolute -top-6 -right-6 lg:-top-10 lg:-right-10 bg-brand-dark border border-gray-700 text-white p-4 rounded-full w-32 h-32 flex items-center justify-center text-center shadow-2xl z-20 transform rotate-12">
+                        <span class="font-cursive text-brand-red text-xl leading-tight">Pedasnya<br>Bikin<br>Nagih!</span>
+                    </div>
+                    <!-- Main Image -->
+                    <img src="https://images.unsplash.com/photo-1612929633738-8fe01f728091?q=80&w=800&auto=format&fit=crop" alt="Mie Pedas" class="rounded-2xl shadow-2xl object-cover w-full max-w-md border-4 border-gray-800 transform hover:scale-[1.02] transition-transform">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Menu Andalan Section -->
+    <section id="menu" class="py-20 bg-brand-card torn-border-top relative">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <div class="flex justify-center items-center gap-4 mb-2">
+                    <i class="fa-solid fa-fire text-brand-red"></i>
+                    <h2 class="text-3xl md:text-5xl font-bold font-cursive tracking-widest">
+                        Menu <span class="text-brand-red">Andalan</span>
+                    </h2>
+                    <i class="fa-solid fa-fire text-brand-red"></i>
+                </div>
+            </div>
+
+            <!-- Responsive Grid for 5 Items -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                
+                <!-- Menu 1 -->
+                <div class="menu-card bg-brand-dark border border-gray-800 rounded-2xl overflow-hidden hover:border-brand-red transition-colors flex flex-col h-full group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1529042419736-834f4207f9c8?q=80&w=600&auto=format&fit=crop" alt="Pentol Huh Hah" class="w-full h-full object-cover img-hover-scale">
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col text-center">
+                        <h3 class="text-xl font-bold mb-2">Pentol Huh Hah</h3>
+                        <p class="text-sm text-gray-400">Pentol kenyal dengan sambal pedas menggoda.</p>
+                    </div>
+                </div>
+
+                <!-- Menu 2 -->
+                <div class="menu-card bg-brand-dark border border-gray-800 rounded-2xl overflow-hidden hover:border-brand-red transition-colors flex flex-col h-full group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?q=80&w=600&auto=format&fit=crop" alt="Mie Jebew" class="w-full h-full object-cover img-hover-scale">
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col text-center">
+                        <h3 class="text-xl font-bold mb-2">Mie Jebew</h3>
+                        <p class="text-sm text-gray-400">Mie pedas dengan cita rasa khas.</p>
+                    </div>
+                </div>
+
+                <!-- Menu 3 -->
+                <div class="menu-card bg-brand-dark border border-gray-800 rounded-2xl overflow-hidden hover:border-brand-red transition-colors flex flex-col h-full group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1626804475297-41609ea0c4eb?q=80&w=600&auto=format&fit=crop" alt="Mie Keliru & Mie Jobel" class="w-full h-full object-cover img-hover-scale">
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col text-center">
+                        <h3 class="text-xl font-bold mb-2">Mie Keliru & Mie Jobel</h3>
+                        <p class="text-sm text-gray-400">Menu unik yang bikin penasaran.</p>
+                    </div>
+                </div>
+
+                <!-- Menu 4 -->
+                <div class="menu-card bg-brand-dark border border-gray-800 rounded-2xl overflow-hidden hover:border-brand-red transition-colors flex flex-col h-full group sm:col-span-2 lg:col-span-1 sm:max-w-[50%] lg:max-w-none mx-auto sm:mx-0 w-full">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=600&auto=format&fit=crop" alt="Pangsit Goreng" class="w-full h-full object-cover img-hover-scale">
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col text-center">
+                        <h3 class="text-xl font-bold mb-2">Pangsit Goreng</h3>
+                        <p class="text-sm text-gray-400">Gurih dan renyah.</p>
+                    </div>
+                </div>
+
+                <!-- Menu 5 -->
+                <div class="menu-card bg-brand-dark border border-gray-800 rounded-2xl overflow-hidden hover:border-brand-red transition-colors flex flex-col h-full group sm:col-span-2 lg:col-span-1 sm:max-w-[50%] lg:max-w-none mx-auto sm:mx-0 w-full">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=600&auto=format&fit=crop" alt="Pangsit Chili Oil" class="w-full h-full object-cover img-hover-scale">
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col text-center">
+                        <h3 class="text-xl font-bold mb-2">Pangsit Chili Oil</h3>
+                        <p class="text-sm text-gray-400">Pangsit dengan balutan minyak cabai yang lezat.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Tentang Kami Section -->
+    <section id="tentang" class="py-20 relative overflow-hidden">
+        <div class="container mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            <!-- Left Image -->
+            <div class="relative">
+                <!-- Red Box Background Accent -->
+                <div class="absolute -top-4 -left-4 w-32 h-32 bg-brand-red z-0 rounded"></div>
+                <div class="absolute -bottom-4 -right-4 w-full h-full bg-gray-800 z-0 rounded border-2 border-brand-red"></div>
+                
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800&auto=format&fit=crop" alt="Kedai Huh Hah Store" class="relative z-10 w-full rounded shadow-xl object-cover h-[400px]">
+                
+                <!-- Tape effect decoration -->
+                <div class="absolute -top-3 -left-3 w-16 h-6 bg-white/80 rotate-[-15deg] z-20 shadow-sm"></div>
+                <div class="absolute -bottom-3 right-10 w-16 h-6 bg-white/80 rotate-[10deg] z-20 shadow-sm"></div>
+            </div>
+
+            <!-- Right Content -->
+            <div class="space-y-6">
+                <h2 class="text-4xl md:text-5xl font-bold">
+                    Tentang <span class="text-brand-red font-cursive tracking-widest">Kami</span>
+                </h2>
+                
+                <p class="text-gray-300 leading-relaxed text-sm md:text-base">
+                    Kedai Huh Hah adalah sebuah usaha kuliner (F&B) yang menawarkan menu makanan dengan cita rasa khas, tingkat kepedasan yang menggugah selera, serta penamaan menu yang unik dan kreatif.
+                </p>
+                <p class="text-gray-300 leading-relaxed text-sm md:text-base">
+                    Berlokasi strategis di area depan sekolah menengah pertama (SMP), kedai ini menjadi daya tarik utama bagi kalangan pelajar.
+                </p>
+
+                <a href="#" class="inline-block bg-brand-red hover:bg-red-700 text-white px-6 py-2 rounded text-sm font-semibold transition-colors mt-2">
+                    Selengkapnya <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
+
+                <div class="space-y-4 pt-6 mt-6 border-t border-gray-800">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-red-900/30 flex items-center justify-center text-brand-red flex-shrink-0">
+                            <i class="fa-solid fa-award text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg">Rasa Lezat & Unik</h4>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-red-900/30 flex items-center justify-center text-brand-red flex-shrink-0">
+                            <i class="fa-solid fa-fire-flame-curved text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg">Pedasnya Menggugah Selera</h4>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-red-900/30 flex items-center justify-center text-brand-red flex-shrink-0">
+                            <i class="fa-solid fa-thumbs-up text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg">Harga Bersahabat</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Promo Banner Section -->
+    <section id="promo" class="promo-bg py-12 md:py-16">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 bg-brand-dark/20 p-8 rounded-2xl border border-white/20 backdrop-blur-sm">
+                
+                <div class="flex items-center gap-6">
+                    <!-- Megaphone Icon -->
+                    <div class="hidden md:flex flex-shrink-0 bg-white text-brand-red rounded-full w-20 h-20 items-center justify-center shadow-lg transform -rotate-12">
+                        <i class="fa-solid fa-bullhorn text-4xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl md:text-5xl font-bold font-cursive italic text-white drop-shadow-md">
+                            Promo Spesial!
+                        </h2>
+                        <p class="text-xl md:text-2xl text-white/90 mt-1 font-semibold">Paket Hemat Pelajar</p>
+                    </div>
+                </div>
+
+                <div class="text-center md:text-right">
+                    <p class="text-white/80 text-sm font-semibold mb-1 uppercase tracking-wider">Mulai dari</p>
+                    <p class="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">Rp 15.000</p>
+                    
+                    <a href="https://wa.me/6281234567890" target="_blank" class="inline-flex items-center gap-2 bg-transparent border-2 border-white text-white hover:bg-white hover:text-brand-red px-6 py-3 rounded-full font-bold transition-all">
+                        <i class="fa-brands fa-whatsapp text-2xl text-green-400 group-hover:text-green-500"></i>
+                        Pesan Sekarang melalui WhatsApp
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Footer -->
+    <footer id="kontak" class="bg-brand-card pt-16 pb-8 border-t border-gray-800">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Col 1: Galeri Kami -->
+                <div class="lg:col-span-1">
+                    <h4 class="text-xl font-bold mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-camera"></i> Galeri Kami
+                    </h4>
+                    <div class="grid grid-cols-2 gap-2">
+                        <img src="https://images.unsplash.com/photo-1612929633738-8fe01f728091?q=80&w=200&auto=format&fit=crop" alt="Galeri 1" class="w-full h-20 object-cover rounded border border-gray-700">
+                        <img src="https://images.unsplash.com/photo-1529042419736-834f4207f9c8?q=80&w=200&auto=format&fit=crop" alt="Galeri 2" class="w-full h-20 object-cover rounded border border-gray-700">
+                        <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?q=80&w=200&auto=format&fit=crop" alt="Galeri 3" class="w-full h-20 object-cover rounded border border-gray-700">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=200&auto=format&fit=crop" alt="Galeri 4" class="w-full h-20 object-cover rounded border border-gray-700">
+                    </div>
+                </div>
+
+                <!-- Col 2: Hubungi Kami -->
+                <div class="lg:col-span-1 lg:pl-8">
+                    <h4 class="text-xl font-bold mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> Hubungi Kami
+                    </h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li>
+                            <a href="#" class="flex items-center gap-3 hover:text-white transition-colors">
+                                <i class="fa-brands fa-whatsapp text-xl w-5 text-center"></i> 0812 3456 7890
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center gap-3 hover:text-white transition-colors">
+                                <i class="fa-brands fa-instagram text-xl w-5 text-center"></i> @kedaihuhhah
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center gap-3 hover:text-white transition-colors">
+                                <i class="fa-brands fa-facebook text-xl w-5 text-center"></i> Kedai Huh Hah
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Address & Map -->
+                <div class="lg:col-span-2 flex flex-col sm:flex-row gap-6">
+                    <div class="flex-1">
+                        <h4 class="text-xl font-bold mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-brand-red"></i> Lokasi
+                        </h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                            Jl. Depan SMP<br>
+                            (Strategis & Mudah Dijangkau)<br>
+                            Buka: 10.00 - 22.00 WIB
+                        </p>
+                    </div>
+                    <div class="flex-1">
+                        <!-- Map Placeholder -->
+                        <div class="bg-gray-800 rounded-lg h-32 w-full border border-gray-700 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=600&auto=format&fit=crop" alt="Peta Lokasi" class="w-full h-full object-cover opacity-50 grayscale">
+                            <div class="absolute inset-0 flex items-center justify-center text-brand-red">
+                                <i class="fa-solid fa-location-dot text-3xl drop-shadow-md"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
+                
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-pepper-hot text-brand-red text-xl"></i>
+                    <span class="font-cursive text-xl">Kedai Huh Hah</span>
+                </div>
+
+                <div class="text-center">
+                    <p class="italic text-gray-400 font-serif">"Rasakan Sensasi Pedasnya, Rasakan Keunikannya!"</p>
+                </div>
+
+                <div class="flex gap-4 text-gray-400">
+                    <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-facebook text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-whatsapp text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-youtube text-xl"></i></a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Sticky Header Script
+        const header = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+                header.classList.remove('py-4');
+                header.classList.add('py-2');
+            } else {
+                header.classList.remove('header-scrolled');
+                header.classList.add('py-4');
+                header.classList.remove('py-2');
+            }
+        });
+
+        // Mobile Menu Toggle Script
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
